@@ -1,0 +1,54 @@
+server:
+  port: 9096
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.3.203:3306/trace?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+      #redis配置
+  redis: 
+    host: 106.15.192.195
+    port: 6379
+    timeout: 20000
+    database: 2
+    password: 123456
+    jedis: 
+      pool:
+       max-active: 8
+       min-idle: 0
+       max-idle: 8
+       max-wait: -1
+  #文件上传配置
+  servlet:
+      multipart:
+        max-file-size: 100MB
+        max-request-size: 1000MB
+        #访问静态资源
+  resources:
+    static-locations: file:${filePath.front-path}
+## Mybatis 配置
+mybatis:
+  typeAliasesPackage: com.yofc.trace.entity
+  mapperLocations: classpath:mapper/*.xml
+
+logging:
+  level:
+    root: INFO
+    com.yuhan.trace.mapper: debug
+    org:
+      springframework:
+        web: DEBUG
+#自定义文件上传路径
+filePath:
+#上传路径配置
+  upload-path: /image/upload/
+  #访问资源路径
+  front-path: ./image/upload/
+  url: http://192.168.3.73:9096
+#用户初始密码
+SysUser:
+  password: 123456
